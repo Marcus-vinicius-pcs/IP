@@ -4,9 +4,9 @@ Este programa serve para calcular a área de uma casa e sua piscina
 #include <stdio.h>
 #include <math.h>
 float lateral, comprimento, areas, areaq, areap, areat;
-double raio;
+float raio;
 
-void areainterna(float lateral, comprimento){
+float areainterna(lateral, comprimento){
     areas = pow(lateral,2);
     printf("Area da sala: %f\n", areas);
     areaq = (lateral/2)*comprimento;
@@ -18,14 +18,14 @@ double areapiscina(double raio) {
     return (M_PI*pow(raio,2));
 }
 int main() {
+float areainterna(int lateral,int comprimento);
+double areapscina();
 printf("Digite o valor da lateral da casa:\n");
-scanf("f", &lateral);
+scanf("%f", &lateral);
 printf("Digite o valor do comprimento da casa:\n");
-scanf("f", &comprimento);
+scanf("%f", &comprimento);
 printf("Digite o valor do raio da piscina:\n");
-scanf("d", &raio);
-areainterna()
-areapscina()
+scanf("%f", &raio);
 areat = areas + 2*areaq + areap + areat;
 printf("Area total: %f\n", areat);
 return 0;
