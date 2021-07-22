@@ -8,49 +8,53 @@
 #define false 0
 
 typedef int bool;
+//retorna true se todas as casas foram preenchidas e não houve vencedor
+bool verificaEmpate (char tabuleiro[][3]){
+  int i, j;
+  for(i=0; i<3; i++){
+    for(j=0; j<3; j++){
+      if(tabuleiro[i][j] == espacoVazio) return false;
+    }
+  }
+  return true;
+}
+
+//retorna true se nenhuma casa está com peça, indicando que o jogo não começou 
+bool verificaInicio (char tabuleiro[][3]){
+  int i, j;
+  for(i=0; i<3; i++){
+    for(j=0; j<3; j++){
+      if(tabuleiro[i][j] != espacoVazio) return false;
+    }
+  }
+  return true;
+}
+
+//retorna true se houve vencedor e false se não houve
+bool verificaVencedor (char tabuleiro[][3], char peca){
+  int i, j, contX, contY;
+  for(i=0;i<3;i++){
+    contX = 0;
+    contY = 0;
+    for(j=0;j<3;j++){
+      if(tabuleiro[i][j] == peca) contX++;
+      if(tabuleiro[j][i] == peca) contY++;
+    }
+    if(contX == 3 || contY == 3) return true;
+  }
+  if(tabuleiro[0][0] == peca && tabuleiro[1][1] == peca && tabuleiro[2][2] == peca) return true;
+  if(tabuleiro[0][2] == peca && tabuleiro[1][1] == peca && tabuleiro[2][0] == peca) return true;
+  
+  return false;
+}
 
 int verificaStatus(char tabuleiro[][3]) {
-	int status = -1;
-int i, j;
- 
-  for(i=0;i<3;i++){
-    for(j=0;j<3;j++){
-      char peca = tabuleiro[i][j];
-      if((tabuleiro[i][0] == ' ' && tabuleiro[i][1] == ' ' && tabuleiro[i][2] == ' ')
-           && (tabuleiro[0][i] == ' ' && tabuleiro[1][i] == ' ' && tabuleiro[2][i] == ' ')
-        && (tabuleiro[0][0] == ' ' && tabuleiro[1][1] == ' ' && tabuleiro [2][2] == ' '))
-      
-        
-      status = 0;
-      else {
-      
-      if((tabuleiro[i][2] == peca && peca !=' ' && tabuleiro [i][0] == tabuleiro [i][1] && tabuleiro [i][1] == tabuleiro [i][2])
-      ||  (tabuleiro[2][j] == peca && peca !=' ' && tabuleiro [0][j] == tabuleiro [1][j] && tabuleiro [1][j] == tabuleiro [2][j])
-      ||  (tabuleiro[1][1] == peca && peca !=' ' && tabuleiro [0][0] == tabuleiro [1][1] && tabuleiro [1][1] == tabuleiro [2][2])
-      ||  (tabuleiro[1][1] == peca && peca !=' ' && tabuleiro [2][0] == tabuleiro [1][1] && tabuleiro [1][1] == tabuleiro [0][2]))
-      status = true;
-     else status = false;
-      if (status){
-       switch(peca){
-          case 'X': return status = 1;
-          case 'O': return status = 2;
-          default: return status = 4; 
-        }
-        }
-      
-          
-             if((tabuleiro[i][0] != ' ' && tabuleiro[i][1] != ' ' && tabuleiro[i][2] != ' ')
-           && (tabuleiro[0][i] != ' ' && tabuleiro[1][i] != ' ' && tabuleiro[2][i] != ' '))
-       
-             status = 3;
-            else status = 4;
-               
-          
-       
-      }
-    }    
-   }
-	return status;
+	int status = 4;
+  if(verificaInicio(tabuleiro)) status = 0;
+  if(verificaVencedor(tabuleiro, pecaX)) status =  1;
+  if(verificaVencedor(tabuleiro, pecaY)) status =  2;
+  if(verificaEmpate(tabuleiro)) status =  3;
+  return status;
 }
 
 int main(){

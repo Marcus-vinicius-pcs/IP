@@ -1,3 +1,14 @@
+/*********************************************************************/
+/**   ACH2001 - Introducao a Programacao                            **/
+/**   EACH-USP - Primeiro Semestre de 2021                          **/
+/**   <194> - <Luciano Digiampietri>                                **/
+/**                                                                 **/
+/**   Quarto Exercicio-Programa                                     **/
+/**                                                                 **/
+/**   <Marcus Vinicius P C Santos>               <12543478>          **/
+/**                                                                 **/
+/*********************************************************************/
+
 #include <stdio.h>
 
 #define dividaMaxima 30000
